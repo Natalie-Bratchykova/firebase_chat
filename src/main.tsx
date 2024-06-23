@@ -23,6 +23,8 @@ const auth = firebase.auth();
 const firestore = firebase.firestore();
 let isAuthorised = null;
 
+
+
 export const Context = createContext({ app, auth, firestore, isAuthorised });
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <Context.Provider value={{ app, auth, firestore, isAuthorised }}>

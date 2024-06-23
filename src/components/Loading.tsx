@@ -1,8 +1,17 @@
-
+import { Container, Grid } from "@mui/material";
 
 function Loading() {
   return (
-    <div></div>
+    <Container>
+      <Grid
+        style={{ height: window.innerHeight - 50 }}
+        container
+        justifyContent={"center"}
+        alignItems={"center"}
+      >
+        <div className="loader"></div>
+      </Grid>
+    </Container>
   );
 }
 

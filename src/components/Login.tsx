@@ -13,6 +13,7 @@ function Login() {
       <Grid
         style={{ height: window.innerHeight - 50 }}
         container
+        direction={"column"}
         justifyContent={"center"}
         alignItems={"center"}
       >

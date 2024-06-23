@@ -1,8 +1,8 @@
-import { AppBar, Button, Grid, Toolbar } from "@mui/material";
+import { AppBar, Avatar, Button, Grid, Toolbar } from "@mui/material";
 import { useContext } from "react";
 import { Context } from "../main";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { getAuth } from "firebase/auth";
+import {  getAuth } from "firebase/auth";
 import { redirect } from "react-router-dom";
 import { CHAT_ROUTE, LOGIN_ROUTE } from "../utils/const";
 
@@ -37,8 +37,16 @@ const Navbar = () => {
 
   return (
     <AppBar color={"secondary"} position="static">
-      <Toolbar variant="dense">
-        <Grid container justifyContent={"flex-end"}>
+      <Toolbar>
+        <Grid container justifyContent={"space-between"} alignItems={"center"}>
+          {user ? (
+            <div>
+              <Avatar src={user.photoURL || ""} />
+              <h2>{user.displayName}</h2>
+            </div>
+          ) : (
+            <div></div>
+          )}
           {user ? (
             <Button
               onClick={() => logout()}

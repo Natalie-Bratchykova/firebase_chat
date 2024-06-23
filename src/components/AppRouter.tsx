@@ -28,7 +28,7 @@ function AppRouter() {
       {publicRoutes.map(({ path, element }, i) => {
         return <Route key={i} path={path} Component={element} />;
       })}
-      <Route path="/error" Component={ErrorPage}/>
+      <Route path="/error" Component={ErrorPage} />
       <Route path="*" element={<Navigate to={LOGIN_ROUTE} />} />
     </Routes>
   );

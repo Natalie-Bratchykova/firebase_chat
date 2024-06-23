@@ -1,0 +1,35 @@
+.chat-message {
+  font-size: 1.2rem;
+  padding: 4% 10% 7% 5%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 0.3em;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  color: white;
+  position: relative;
+  min-width: 10rem;
+  max-width: 24rem;
+}
+.chat {
+  background: linear-gradient(#6d17cb, #2876f9);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.another-chat {
+  background: linear-gradient(#0c0c0c, #2876f9);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.chat-time {
+  position: absolute;
+  font-size: 0.8rem;
+  bottom: 0;
+  right: 0;
+  padding-right: 2%;
+  padding-bottom: 2%;
+}
