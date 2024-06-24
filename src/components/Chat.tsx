@@ -2,29 +2,35 @@ import { useContext, useState } from "react";
 import { Context } from "../main";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Avatar, Button, Container, Grid, TextField } from "@mui/material";
+import { Button, Container, Grid, TextField } from "@mui/material";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import { query } from "firebase/firestore";
 import firebase from "firebase/compat/app";
 import "./chat.css";
 import Loading from "./Loading";
+import { Navigate } from "react-router-dom";
+import { ERROR_ROUTE } from "../utils/const";
+import ShowMessages from "./ShowMessages";
+import EmptyChat from "./EmptyChat";
 function Chat() {
   const { app, firestore } = useContext(Context);
   const auth = getAuth(app);
   const [user] = useAuthState(auth);
 
   const [inputValue, setInputValue] = useState<string>("");
-
+  let currentDay = "";
   const queryCommand = firestore.collection("message").orderBy("createdAt");
   const q = query(queryCommand);
   const [messages, loading] = useCollectionData(q);
 
+  if (!messages && !user) {
+    return <Navigate to={ERROR_ROUTE} />;
+  }
   if (loading) {
     return <Loading />;
   }
-  const sendMessage = async () => {
-    console.log(messages);
 
+  const sendMessage = async () => {
     firestore.collection("message").add({
       uid: user?.uid,
       displayName: user?.displayName,
@@ -42,49 +48,16 @@ function Chat() {
         justifyContent={"center"}
         alignItems={"center"}
       >
-        <div
-          style={{
-            width: "80%",
-            height: "70vh",
-            border: "1px solid grey",
-            overflowY: "auto",
-          }}
-        >
-          {messages?.map((message, i) => (
-            <div
-              style={{
-                marginLeft: message.uid === user?.uid ? "auto" : "10px",
-                width: "fit-content",
-                marginTop: "2%",
-                padding: "2%",
-                position: "relative",
-              }}
-            >
-              <Grid
-                container
-                key={i}
-                direction={user?.uid === message.uid ? "row-reverse" : "row"}
-                alignItems={"flex-start"}
-                gap={"1.2em"}
-                wrap={"nowrap"}
-              >
-                <Avatar src={message.photoURL} />
+        {messages?.length&& messages.length > 0 ? (
+          <ShowMessages
+            messages={messages}
+            currentDay={currentDay}
+            user={user}
+          />
+        ) : (
+          <EmptyChat />
+        )}
 
-                <div
-                  className={`${
-                    user?.uid === message.uid ? "chat" : "another-chat"
-                  } chat-message`}
-                >
-                  {message.text}
-                  <span className="chat-time">
-                    {new Date(message?.createdAt?.seconds * 1000).getHours()}:
-                    {new Date(message?.createdAt?.seconds * 1000).getMinutes()}
-                  </span>
-                </div>
-              </Grid>
-            </div>
-          ))}
-        </div>
         <Grid
           container
           direction={"column"}

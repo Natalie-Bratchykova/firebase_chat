@@ -1,14 +1,12 @@
 .chat-message {
   font-size: 1.2rem;
-  padding: 4% 10% 7% 5%;
+  padding: 2% 5% 3% 2%;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  border-radius: 0.3em;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-attachment: fixed;
+  border-radius: 0.5em;
   color: white;
   position: relative;
   min-width: 10rem;
+  width: fit-content;
   max-width: 24rem;
 }
 .chat {

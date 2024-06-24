@@ -5,7 +5,6 @@ import { useContext } from "react";
 import { Context } from "../main";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import ErrorPage from "./ErrorPage";
 function AppRouter() {
   let user = null;
   try {
@@ -28,7 +27,7 @@ function AppRouter() {
       {publicRoutes.map(({ path, element }, i) => {
         return <Route key={i} path={path} Component={element} />;
       })}
-      <Route path="/error" Component={ErrorPage} />
+
       <Route path="*" element={<Navigate to={LOGIN_ROUTE} />} />
     </Routes>
   );
