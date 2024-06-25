@@ -1,8 +1,8 @@
 # React + TypeScript + Firebase
 
-This small app is real time online chat.
+This small app is real time online chat with 1 room.
 
-Template was create with usage of React + TypeScript + material UI.
+Template was create with usage of React + TypeScript + Material UI.
 
 Authorization was made through Google with usage of firebase service. User messages are hold in firestore db
 
